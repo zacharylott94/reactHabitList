@@ -1,5 +1,9 @@
 .App {
-  text-align: center;
+  text-align: left;
+}
+
+.List {
+  text-align: left;
 }
 
 .App-logo {

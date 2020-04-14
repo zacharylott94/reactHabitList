@@ -3,12 +3,11 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const testList = ["Wake", "Eat", "Code", "Sleep", "Repeat"]
+  const testList = [<ListItem name='333333333333333333333'/>,<ListItem name="hello"/>,<ListItem />,<ListItem name="noU"/>]
   return (
     <div className="App">
       <h1>Habit List</h1>
         <List items={testList} />
-        <ListItem />
     </div>
   );
 }
@@ -39,10 +38,8 @@ class ListItem extends React.Component {
   render () {
     return (
       <li>
-        <button onClick={() => this.onClick()}>{this.state.complete ? "X": "O"}</button>
-        {this.props.name} : {this.state.number}
-        {/*This is for testing the reset function
-          <button onClick={() => this.reset()}>reset</button>*/}
+        <button onClick={() => this.onClick()}>{this.state.complete ? "X": "O"}</button><span> {this.props.name} : {this.state.number}</span>
+
       </li>)
   }
 }
@@ -51,10 +48,13 @@ ListItem.defaultProps = {name : "Item Name"}
 class List extends React.Component {
   constructor(props){
     super(props)
+    this.state = {
+      items: this.props.items
+    }
   }
 
   render() {
-    let list = this.props.items.map((i) => <ListItem key={i.toString()} name={i} />)
+    let list = this.props.items
     return (
       <div>
         <ListItemForm />
@@ -65,6 +65,10 @@ class List extends React.Component {
     )
   }
 }
+
+  removeItem(key){
+    return
+  }
 
 
 class ListItemForm extends React.Component {
