@@ -37,7 +37,12 @@ class ListItem extends React.Component {
     this.state.complete ? this.decrement() : this.increment()
   }
   render () {
-    return <li><button onClick={() => this.onClick()}>{this.state.complete ? "X": "O"}</button>{this.props.name} : {this.state.number}</li>
+    return (
+      <li>
+        <button onClick={() => this.onClick()}>{this.state.complete ? "X": "O"}</button>
+        {this.props.name} : {this.state.number}
+        <button onClick={() => this.reset()}>reset</button>
+      </li>)
   }
 }
 ListItem.defaultProps = {name : "Item Name"}
