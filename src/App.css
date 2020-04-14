@@ -1,9 +1,16 @@
 .App {
-  text-align: left;
+  text-align: center;
 }
 
 .List {
   text-align: left;
+}
+.ListItem {
+  margin-bottom: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  justify-items: center;
 }
 
 .App-logo {

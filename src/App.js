@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <h1>Habit List</h1>
-        <List items={testList} />
+        <List items={testList} className="List"/>
     </div>
   );
 }
@@ -37,8 +37,10 @@ class ListItem extends React.Component {
   }
   render () {
     return (
-      <li>
-        <button onClick={() => this.onClick()}>{this.state.complete ? "X": "O"}</button><span> {this.props.name} : {this.state.number}</span>
+      <li onClick={() => this.onClick()} className="ListItem">
+      <div>{this.state.number}</div>
+      <div>{this.props.name}</div>
+      <div> {this.state.complete ? "X": "O"} </div>
 
       </li>)
   }
@@ -66,9 +68,7 @@ class List extends React.Component {
   }
 }
 
-  removeItem(key){
-    return
-  }
+
 
 
 class ListItemForm extends React.Component {
