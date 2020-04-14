@@ -41,19 +41,55 @@ class ListItem extends React.Component {
       <li>
         <button onClick={() => this.onClick()}>{this.state.complete ? "X": "O"}</button>
         {this.props.name} : {this.state.number}
-        <button onClick={() => this.reset()}>reset</button>
+        {/*This is for testing the reset function
+          <button onClick={() => this.reset()}>reset</button>*/}
       </li>)
   }
 }
 ListItem.defaultProps = {name : "Item Name"}
 
-function List(props) {
-  let list = props.items.map((i) => <ListItem key={i.toString()} name={i} />)
-  return (
-    <ul>
-      {list}
-    </ul>
-  )
+class List extends React.Component {
+  constructor(props){
+    super(props)
+  }
+
+  render() {
+    let list = this.props.items.map((i) => <ListItem key={i.toString()} name={i} />)
+    return (
+      <div>
+        <ListItemForm />
+        <ul>
+        {list}
+        </ul>
+      </div>
+    )
+  }
+}
+
+
+class ListItemForm extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {value: ''}
+
+  }
+  handleChange(event){
+    this.setState({value: event.target.value})
+  }
+
+  handleSubmit() {
+    console.log("add to list: " + this.state.value)
+  }
+
+  render () {
+    return (
+      <div>
+        <input type="text" value={this.state.value} onChange={(e) => this.handleChange(e)} />
+        <button onClick={() => this.handleSubmit()}>Add to list</button>
+      </div>
+    )
+  }
+
 }
 
 
