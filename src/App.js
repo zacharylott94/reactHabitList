@@ -3,24 +3,36 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const testList = ["Wake", "Eat", "Code", "Sleep", "Repeat"]
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Habit List</h1>
+      <ul>
+        <List items={testList} />
+      </ul>
     </div>
   );
 }
+
+class ListItem extends React.Component {
+  constructor(props){
+    super(props)
+  }
+
+  render () {
+    return <li>{this.props.name}</li>
+  }
+}
+
+function List(props) {
+  let list = props.items.map((i) => <ListItem key={i.toString()} name={i} />)
+  return (
+    <ul>
+      {list}
+    </ul>
+  )
+}
+
+ListItem.defaultProps = {name:"Item Name"}
 
 export default App;
