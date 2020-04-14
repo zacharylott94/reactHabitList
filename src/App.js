@@ -18,14 +18,26 @@ class ListItem extends React.Component {
     super(props)
     this.state = {
       complete: false,
+      number: 0
     }
+  }
+
+  increment() {
+    this.setState({number: this.state.number+1})
+  }
+  decrement() {
+    this.setState({number: this.state.number-1})
+  }
+  reset() {
+    this.setState({complete:false})
   }
 
   onClick() {
     this.setState({complete: !this.state.complete})
+    this.state.complete ? this.decrement() : this.increment()
   }
   render () {
-    return <li><button onClick={() => this.onClick()}>{this.state.complete ? "X": "O"}</button>{this.props.name}</li>
+    return <li><button onClick={() => this.onClick()}>{this.state.complete ? "X": "O"}</button>{this.props.name} : {this.state.number}</li>
   }
 }
 ListItem.defaultProps = {name : "Item Name"}
