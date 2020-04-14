@@ -88,8 +88,19 @@ class ListItemForm extends React.Component {
   render () {
     return (
       <div>
-        <input type="text" value={this.state.value} onChange={(e) => this.handleChange(e)} />
-        <button onClick={() => this.handleSubmit()}>Add to list</button>
+        <input
+          type="text"
+          value={this.state.value}
+          onChange={(e) => this.handleChange(e)}
+          onKeyPress={(e) => {
+            // e.preventDefault();
+            if (e.key == "Enter") { this.handleSubmit() }
+            // else {this.handleChange(e)}
+            // console.log(e.key)
+          }} />
+        <button
+          onClick={() => this.handleSubmit()}
+          >Add to list</button>
       </div>
     )
   }
