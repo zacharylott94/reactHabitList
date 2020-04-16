@@ -32,6 +32,11 @@ export class List extends React.Component {
       return;
     }
     let { items } = this.getItem();
+
+    if (items.find((i) => i.desc === desc)) {
+        return
+    }
+
     let item = ItemState(desc);
     items.push(item);
     this.updateState(items);
