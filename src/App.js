@@ -64,6 +64,9 @@ class List extends React.Component {
   }
   
   addItem(desc) {
+    if (desc === '') {
+      return
+    }
     let {items} = this.getItem()
     let item = ItemState(desc)
     items.push(item)
