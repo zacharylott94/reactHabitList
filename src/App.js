@@ -4,6 +4,7 @@ import './App.css';
 
 function App() {
   const testList = [<ListItem name='333333333333333333333'/>,<ListItem name="hello"/>,<ListItem />,<ListItem name="noU"/>]
+
   return (
     <div className="App">
       <h1>Habit List</h1>
@@ -95,8 +96,6 @@ class ListItemForm extends React.Component {
           onKeyPress={(e) => {
             // e.preventDefault();
             if (e.key == "Enter") { this.handleSubmit() }
-            // else {this.handleChange(e)}
-            // console.log(e.key)
           }} />
         <button
           onClick={() => this.handleSubmit()}
@@ -107,6 +106,21 @@ class ListItemForm extends React.Component {
 
 }
 
+//This holds a simple object construct that helps organize data
+class ItemState {
+  constructor(desc="Description", state=false, count=0) {
+    this.desc = desc
+    this.state = state
+    this.count = count
 
+  }
+
+  print() {
+    console.log(`${this.desc} is ${this.state ? "complete" : "incomplete"} and has been completed ${this.count} time(s).`)
+  }
+}
+
+const testobject = new ItemState("Homework", true, 3)
+setInterval(() => testobject.print(), 1000)
 
 export default App;
