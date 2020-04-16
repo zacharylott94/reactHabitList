@@ -9,6 +9,38 @@ export class List extends React.Component {
       items: this.props.items
     };
   }
+  
+  renderChildren() {
+    let items = this.state.items;
+    items = items.map((i) => {
+      return <ListItem key={i.desc} {...i} onClick={(desc) => { this.handleClick(desc); }} remove={(desc) => { this.removeItem(desc); }} />;
+    });
+    return items;
+  }
+  render() {
+    return (<div>
+      <ListItemForm submit={(desc) => { this.addItem(desc); }} />
+      <ul>
+        {this.renderChildren()}
+      </ul>
+    </div>);
+  }
+
+
+
+  //gets passed to ItemList children
+  handleClick(desc) {
+    let { items, itemIndex, item } = this.getItem(desc);
+    //toggle completion state of item, increment/decrement it, plug it back into item array
+    item.complete = !item.complete;
+    item = item.complete ? this.increment(item) : this.decrement(item);
+    items[itemIndex] = item;
+    //this updates List state and causes a rerender
+    this.updateState(items);
+  }
+
+
+
   //Helper functions
   increment(item) {
     item.count += 1;
@@ -51,29 +83,4 @@ export class List extends React.Component {
     this.setState({ items: items });
   }
   //End Helper Functions
-  //gets passed to ItemList children
-  handleClick(desc) {
-    let { items, itemIndex, item } = this.getItem(desc);
-    //toggle completion state of item, increment/decrement it, plug it back into item array
-    item.complete = !item.complete;
-    item = item.complete ? this.increment(item) : this.decrement(item);
-    items[itemIndex] = item;
-    //this updates List state and causes a rerender
-    this.updateState(items);
-  }
-  renderChildren() {
-    let items = this.state.items;
-    items = items.map((i) => {
-      return <ListItem {...i} onClick={(desc) => { this.handleClick(desc); }} remove={(desc) => { this.removeItem(desc); }} />;
-    });
-    return items;
-  }
-  render() {
-    return (<div>
-      <ListItemForm submit={(desc) => { this.addItem(desc); }} />
-      <ul>
-        {this.renderChildren()}
-      </ul>
-    </div>);
-  }
 }

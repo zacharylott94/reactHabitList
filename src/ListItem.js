@@ -1,9 +1,7 @@
 import React from 'react';
 import { ItemState } from './ItemState';
 export class ListItem extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
   render() {
     return (<li className="ListItem">
       <div>{this.props.count}</div>

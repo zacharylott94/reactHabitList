@@ -15,7 +15,7 @@ export class ListItemForm extends React.Component {
     return (<div>
       <input type="text" value={this.state.value} onChange={(e) => this.handleChange(e)} onKeyPress={(e) => {
         // e.preventDefault();
-        if (e.key == "Enter") {
+        if (e.key === "Enter") {
           this.handleSubmit();
         }
       }} />

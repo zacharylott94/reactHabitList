@@ -5,7 +5,7 @@ import { ItemState } from './ItemState';
 import { List } from './List';
 
 function App() {
-  const testList = [ItemState("Do you homework"),ItemState("Eat a banana"),ItemState(),ItemState()]
+  const testList = [ItemState("Do you homework"),ItemState("Eat a banana"),ItemState("Go for a walk"),ItemState()]
 
   return (
     <div className="App">
