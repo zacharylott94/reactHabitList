@@ -107,20 +107,15 @@ class ListItemForm extends React.Component {
 }
 
 //This holds a simple object construct that helps organize data
-class ItemState {
-  constructor(desc="Description", state=false, count=0) {
-    this.desc = desc
-    this.state = state
-    this.count = count
-
-  }
-
-  print() {
-    console.log(`${this.desc} is ${this.state ? "complete" : "incomplete"} and has been completed ${this.count} time(s).`)
+function ItemState(desc = "Description",state = false,count = 0) {
+  return {
+    desc,
+    state,
+    count
   }
 }
 
-const testobject = new ItemState("Homework", true, 3)
-setInterval(() => testobject.print(), 1000)
+const testobject = ItemState("Homework", true, 3)
+setInterval(() => console.log(testobject), 1000)
 
 export default App;
