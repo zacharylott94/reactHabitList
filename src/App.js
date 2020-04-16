@@ -3,12 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const testList = [<ListItem name='333333333333333333333'/>,<ListItem name="hello"/>,<ListItem />,<ListItem name="noU"/>]
+  const testList = [ItemState("Do you homework"),ItemState("Eat a banana"),ItemState(),ItemState()]
 
   return (
     <div className="App">
       <h1>Habit List</h1>
-        <List items={testList} className="List"/>
+        <List className="List" items={testList}/>
     </div>
   );
 }
@@ -16,37 +16,22 @@ function App() {
 class ListItem extends React.Component {
   constructor(props){
     super(props)
-    this.state = {
-      complete: false,
-      number: 0
-    }
   }
 
-  increment() {
-    this.setState({number: this.state.number+1})
-  }
-  decrement() {
-    this.setState({number: this.state.number-1})
-  }
-  reset() {
-    this.setState({complete:false})
-  }
 
-  onClick() {
-    this.setState({complete: !this.state.complete})
-    this.state.complete ? this.decrement() : this.increment()
-  }
+
+
   render () {
     return (
-      <li onClick={() => this.onClick()} className="ListItem">
-      <div>{this.state.number}</div>
-      <div>{this.props.name}</div>
-      <div> {this.state.complete ? "X": "O"} </div>
+      <li onClick={() => this.props.onClick(this.props.desc)} className="ListItem">
+      <div>{this.props.count}</div>
+      <div>{this.props.desc}</div>
+      <div> {this.props.complete ? "X": "O"} </div>
 
       </li>)
   }
 }
-ListItem.defaultProps = {name : "Item Name"}
+ListItem.defaultProps = ItemState()
 
 class List extends React.Component {
   constructor(props){
@@ -56,13 +41,48 @@ class List extends React.Component {
     }
   }
 
+  increment(item) {
+    item.count += 1
+    return item
+  }
+  decrement(item) {
+    item.count -=1
+    return item
+  }
+  reset() {
+    this.setState({complete:false})
+  }
+
+
+  updateState(items) {
+    this.setState({items: items})
+  }
+  
+
+  handleClick(desc) {
+    let items = this.state.items
+    let itemIndex = items.findIndex((i) => i.desc === desc)
+    let item = items[itemIndex]
+    // console.log(item)
+    item.complete = !item.complete
+    item = item.complete ? this.increment(item) : this.decrement(item)
+    items[itemIndex]= item
+    this.updateState(items)
+    // this.state.complete ? this.decrement() : this.increment()
+  }
+
+  renderChildren() {
+    let items = this.state.items
+    items = items.map((i) => {return <ListItem {...i} onClick = {(desc) => {this.handleClick(desc)}}/>})
+    return items
+  }
+
   render() {
-    let list = this.props.items
     return (
       <div>
         <ListItemForm />
         <ul>
-        {list}
+          {this.renderChildren()}
         </ul>
       </div>
     )
@@ -115,7 +135,7 @@ function ItemState(desc = "Description",state = false,count = 0) {
   }
 }
 
-const testobject = ItemState("Homework", true, 3)
-setInterval(() => console.log(testobject), 1000)
+// const testobject = ItemState("Homework", true, 3)
+// setInterval(() => console.log(testobject), 1000)
 
 export default App;
