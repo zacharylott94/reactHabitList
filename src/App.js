@@ -23,10 +23,10 @@ class ListItem extends React.Component {
 
   render () {
     return (
-      <li onClick={() => this.props.onClick(this.props.desc)} className="ListItem">
+      <li className="ListItem">
       <div>{this.props.count}</div>
-      <div>{this.props.desc}</div>
-      <div> {this.props.complete ? "X": "O"} </div>
+      <div onClick={() => this.props.onClick(this.props.desc)}>{this.props.desc}</div>
+      <div onClick={() => {this.props.remove(this.props.desc)}}> {this.props.complete ? "X": "O"} </div>
 
       </li>)
   }
@@ -61,6 +61,7 @@ class List extends React.Component {
     let {items, itemIndex} = this.getItem(desc)
     items = items.slice(0,itemIndex).concat(items.slice(itemIndex+1))
     this.updateState(items)
+    console.log("remove item")
   }
 
   getItem(desc){
@@ -94,7 +95,10 @@ class List extends React.Component {
 
   renderChildren() {
     let items = this.state.items
-    items = items.map((i) => {return <ListItem {...i} onClick = {(desc) => {this.handleClick(desc)}}/>})
+    items = items.map((i) => {return <ListItem {...i} 
+                                        onClick = {(desc) => {this.handleClick(desc)}}
+                                        remove = {(desc) => {this.removeItem(desc)}}
+                                      />})
     return items
   }
 
@@ -147,7 +151,7 @@ class ListItemForm extends React.Component {
 
 }
 
-//This holds a simple object construct that helps organize data
+//This factory function returns a simple object that helps organize data
 function ItemState(desc = "Description",state = false,count = 0) {
   return {
     desc,
@@ -156,7 +160,5 @@ function ItemState(desc = "Description",state = false,count = 0) {
   }
 }
 
-// const testobject = ItemState("Homework", true, 3)
-// setInterval(() => console.log(testobject), 1000)
 
 export default App;
