@@ -1,7 +1,7 @@
 import React from 'react';
 import { ItemState } from './ItemState';
 import { ListItemForm } from './ListItemForm';
-import { ListItem } from './App';
+import { ListItem } from "./ListItem";
 export class List extends React.Component {
   constructor(props) {
     super(props);
