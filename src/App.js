@@ -41,34 +41,55 @@ class List extends React.Component {
     }
   }
 
+  //Helper functions
   increment(item) {
     item.count += 1
     return item
   }
+
   decrement(item) {
     item.count -=1
     return item
   }
-  reset() {
-    this.setState({complete:false})
+
+  reset(item) {
+    item.complete = false
+    return item
   }
 
-
-  updateState(items) {
-    this.setState({items: items})
+  removeItem(desc) {
+    let {items, itemIndex} = this.getItem(desc)
+    items = items.slice(0,itemIndex).concat(items.slice(itemIndex+1))
+    this.updateState(items)
   }
-  
 
-  handleClick(desc) {
+  getItem(desc){
     let items = this.state.items
     let itemIndex = items.findIndex((i) => i.desc === desc)
     let item = items[itemIndex]
-    // console.log(item)
+    return {items, itemIndex, item}
+  }
+
+
+  
+  updateState(items) {
+    this.setState({items: items})
+  }
+  //End Helper Functions
+  
+
+  //gets passed to ItemList children
+  handleClick(desc) {
+    let {items, itemIndex, item} = this.getItem(desc)
+
+
+    //toggle completion state of item, increment/decrement it, plug it back into item array
     item.complete = !item.complete
     item = item.complete ? this.increment(item) : this.decrement(item)
     items[itemIndex]= item
+
+    //this updates List state and causes a rerender
     this.updateState(items)
-    // this.state.complete ? this.decrement() : this.increment()
   }
 
   renderChildren() {
