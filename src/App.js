@@ -61,7 +61,14 @@ class List extends React.Component {
     let {items, itemIndex} = this.getItem(desc)
     items = items.slice(0,itemIndex).concat(items.slice(itemIndex+1))
     this.updateState(items)
-    console.log("remove item")
+  }
+  
+  addItem(desc) {
+    let {items} = this.getItem()
+    let item = ItemState(desc)
+    items.push(item)
+    this.updateState(items)
+
   }
 
   getItem(desc){
@@ -105,7 +112,7 @@ class List extends React.Component {
   render() {
     return (
       <div>
-        <ListItemForm />
+        <ListItemForm submit={(desc) => {this.addItem(desc)}} />
         <ul>
           {this.renderChildren()}
         </ul>
@@ -128,7 +135,8 @@ class ListItemForm extends React.Component {
   }
 
   handleSubmit() {
-    console.log("add to list: " + this.state.value)
+    this.props.submit(this.state.value)
+    this.setState({value: ''})
   }
 
   render () {
