@@ -3,12 +3,12 @@ import { ItemState } from './ItemState';
 export class ListItem extends React.Component {
 
   render() {
-    return (<li className="ListItem">
-      <div>{this.props.count}</div>
-      <div onClick={() => this.props.onClick(this.props.desc)}>{this.props.desc}</div>
-      <div onClick={() => { this.props.remove(this.props.desc); }}> {this.props.complete ? "X" : "O"} </div>
+    return (<div className="ListItem">
+      <div className="ListItemCounter">{this.props.count}</div>
+      <div className={this.props.complete ? "true" :"false"} onClick={() => this.props.onClick(this.props.desc)}>{this.props.desc}</div>
+      <button onClick={() => { this.props.remove(this.props.desc); }}>X</button>
 
-    </li>);
+    </div>);
   }
 }
 ListItem.defaultProps = ItemState();

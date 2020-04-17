@@ -10,9 +10,13 @@ function App() {
   return (
     <div className="App">
       <h1>Habit List</h1>
-        <List className="List" items={testList}/>
+        <List items={testList}/>
     </div>
   );
 }
+
+
+
+
 
 export default App;

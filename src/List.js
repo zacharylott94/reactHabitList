@@ -6,7 +6,7 @@ export class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: this.props.items
+      items: JSON.parse(get("items")) || []
     };
   }
   
@@ -20,9 +20,9 @@ export class List extends React.Component {
   render() {
     return (<div>
       <ListItemForm submit={(desc) => { this.addItem(desc); }} />
-      <ul>
+      <div className="List">
         {this.renderChildren()}
-      </ul>
+      </div>
     </div>);
   }
 
@@ -81,6 +81,24 @@ export class List extends React.Component {
   }
   updateState(items) {
     this.setState({ items: items });
+    set("items", JSON.stringify(items))
   }
   //End Helper Functions
 }
+
+//sets a value in localStorage
+//accepts strings, doesn't return
+function set(key, value){
+    window.localStorage.setItem(key,value);
+  }
+  
+  //gets a value in localStorage
+  //accepts string, returns string
+  function get(key){
+    return window.localStorage.getItem(key);
+  }
+  
+  //empties a value in localStorage
+  function clear(key){
+    window.localStorage.removeItem(key);
+  }

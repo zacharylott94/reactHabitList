@@ -1,0 +1,65 @@
+html {
+  text-align: center;
+}
+
+#list {
+  margin-bottom: 15px;
+   vertical-align: middle;
+}
+
+.task {
+  margin-bottom: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  justify-items: center;
+  
+}
+
+.task > div{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+  border-style: outset;
+  border-radius: 6px;
+  min-width: 200px;
+  max-width: 200px;
+  padding: 0px 20px 0px 20px;
+  word-wrap: break-word;
+  grid-column: 2;
+/*  justify-self:right;*/
+}
+
+.task > button {
+  background: rgb(200,100,100);
+  border-color: rgb(230,130,130);
+  border-radius: 6px;
+  font-size: 2em;
+  color: darkred;
+  grid-column: 3;
+  justify-self: left;
+/*  margin-left: 25px;*/
+  height: 50px;
+  width: 50px;
+}
+
+button {
+  margin: 5px;
+}
+
+.lb {
+  min-height: 25px;
+/*  background-color: red;*/
+}
+
+h1{
+  margin-bottom: 0px;
+}
+
+.true {
+  background-color: greenyellow;
+  border-color: rgb(100,200,100);
+}
+.false {
+  border-color: lightgray;
+}
