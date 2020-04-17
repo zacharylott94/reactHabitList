@@ -8,6 +8,11 @@ export class List extends React.Component {
     this.state = {
       items: JSON.parse(get("items")) || []
     };
+
+  }
+
+  componentDidMount() {
+    setInterval(() => {this.nextDay()}, 10000)
   }
   
   renderChildren() {
@@ -30,6 +35,16 @@ export class List extends React.Component {
 
 //------------------------------------------------
 
+  //compares current and last times, resets if they don't match
+  nextDay(){
+    let day = new Date().getDay();
+    let lastTime = get("lastTime")
+    if (lastTime !== String(day)) {
+      this.resetAll();
+      lastTime = day;
+      set("lastTime", String(lastTime));
+    }
+  }
 
   resetAll(){
     let {items} = this.getItem()
@@ -115,3 +130,5 @@ function set(key, value){
   function clear(key){
     window.localStorage.removeItem(key);
   }
+  
+
