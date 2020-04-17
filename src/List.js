@@ -19,11 +19,24 @@ export class List extends React.Component {
   }
   render() {
     return (<div>
+      <button onClick = {() => {this.resetAll()}} >reset</button>
       <ListItemForm submit={(desc) => { this.addItem(desc); }} />
       <div className="List">
         {this.renderChildren()}
       </div>
     </div>);
+  }
+
+
+//------------------------------------------------
+
+
+  resetAll(){
+    let {items} = this.getItem()
+    items = items.map((item) => {
+      return this.reset(item)
+    })
+    this.updateState(items)
   }
 
 
