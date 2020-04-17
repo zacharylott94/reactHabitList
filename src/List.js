@@ -12,6 +12,7 @@ export class List extends React.Component {
   }
 
   componentDidMount() {
+    this.nextDay()
     setInterval(() => {this.nextDay()}, 10000)
   }
   
@@ -24,7 +25,6 @@ export class List extends React.Component {
   }
   render() {
     return (<div>
-      {/* <button onClick = {() => {this.resetAll()}} >reset</button> */}
       <ListItemForm submit={(desc) => { this.addItem(desc); }} />
       <div className="List">
         {this.renderChildren()}
