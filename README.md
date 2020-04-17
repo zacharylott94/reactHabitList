@@ -1,3 +1,11 @@
+# What is HabitList?
+
+HabitList is a checklist. You add things you want to do daily to the list, and you check them off each day you do them. Each day at midnight, the items in the list reset their completion states so that you can do it all again tomorrow. HabitList will keep a tally of each time you do your daily task so that you can see your committance to the new habits you are trying to build. 
+
+This app will not record "streaks," or number of days you complete the task in a row. It is my philosophy that apps that implement a streak will discourage the user if they ever break that streak. It is okay if you miss a day or two. What is important is that you get back on track as soon as possible. Instead, what may show up is a ratio of days you completed your tasks compared to how many days it has been since you created that task.
+
+
+---------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,3 +74,5 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
